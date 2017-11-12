@@ -102,8 +102,8 @@ DrGPointFreeItem >> writeAsXmlTo: aNode [
 	"It is important to return the node"
 	| node|
 	node :=  super writeAsXmlTo: aNode.
-	node addNode:  ((XMLElement named: #x) addContent: (XMLString string: point x asString));
-		addNode: ((XMLElement named: #y) addContent: (XMLString string: point y asString)).
+	node addElement:  ((XMLElement named: #x) addContent: (XMLString string: point x asString));
+		addElement: ((XMLElement named: #y) addContent: (XMLString string: point y asString)).
 	^node
 ]
 

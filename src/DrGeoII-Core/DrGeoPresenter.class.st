@@ -133,7 +133,7 @@ DrGeoPresenter >> askForSketchToKeep [
 | dialog newResource answer|
 	DrGDefault showVirtualKeyboard: true.
 	dialog := DrGFilenameDialog new
-		textFont: UITheme current textFont;
+		textFont: UITheme new textFont;
 		title: 'Filename' translated;
 		text: 'Name the sketch to keep.' translated.
 	dialog openInWorld.

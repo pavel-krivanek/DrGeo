@@ -150,7 +150,7 @@ DrGValueScriptItem >> writeAsXmlTo: aNode [
 	|node|
 	node := super writeAsXmlTo: aNode.
 	node attributeAt: #class put: script class printString.
-	node addNode: (
+	node addElement: (
 		(XMLElement named: #code) addContent: (
 			XMLString string: (String streamContents: [:out |script class fileOutOn: out]))).
 	^ self writeAsXmlPositionTo: node.

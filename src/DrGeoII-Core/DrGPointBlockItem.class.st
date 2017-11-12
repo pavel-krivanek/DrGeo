@@ -68,6 +68,6 @@ DrGPointBlockItem >> update [
 DrGPointBlockItem >> writeAsXmlTo: aNode [
 	|node|
 	node := super writeAsXmlTo: aNode.
-	node addNode: ((XMLElement named: #code) addContent: (XMLString string: pointBlock asString)).
+	node addElement: ((XMLElement named: #code) addContent: (XMLString string: pointBlock asString)).
 	^node
 ]

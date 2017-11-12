@@ -149,9 +149,9 @@ DrGTextItem >> text: aText [
 DrGTextItem >> writeAsXmlPositionTo: aNode [ 
 	"return the newly created element"
 	aNode
-		addNode: ((XMLElement named: #x)
+		addElement: ((XMLElement named: #x)
 				addContent: (XMLString string: position x asString));
-		addNode: ((XMLElement named: #y)
+		addElement: ((XMLElement named: #y)
 				addContent: (XMLString string: position y asString)).
 	^ aNode
 ]
@@ -160,7 +160,7 @@ DrGTextItem >> writeAsXmlPositionTo: aNode [
 DrGTextItem >> writeAsXmlTo: aNode [
 	|node|
 	node := super writeAsXmlTo: aNode.
-	node addNode:  ((XMLElement named: #contents) addContent: (XMLString string: self text)).
+	node addElement:  ((XMLElement named: #contents) addContent: (XMLString string: self text)).
 	^ self writeAsXmlPositionTo: node
 
 ]

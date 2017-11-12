@@ -45,7 +45,7 @@ DrGMacroMathItem >> parents: object [
 DrGMacroMathItem >> writeAsXmlTo: aNode [
 	"return the newly created element"
 	| node |
-	node :=  XMLElement name: self basicType attributes: Dictionary new.
+	node :=  XMLElement named: self basicType attributes: Dictionary new.
 	node attributeAt: #type put: 'inputMacroMathItem';
 		attributeAt: #id put: self id.
 	aNode addElement: node.

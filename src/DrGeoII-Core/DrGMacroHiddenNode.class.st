@@ -54,7 +54,7 @@ DrGMacroHiddenNode >> statusElement [
 DrGMacroHiddenNode >> writeAsXmlTo: aNode [
 	| element statusElement|
 	statusElement := self statusElement.
-	aNode addNode: statusElement.
+	aNode addElement: statusElement.
 	itemTemplate parents: (parentNodes collect: [:each | each itemTemplate]).
 	element := itemTemplate writeAsXmlTo: statusElement.
 	^ statusElement 

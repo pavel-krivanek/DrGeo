@@ -216,11 +216,11 @@ DrGMacro >> writeAsXmlTo: aNode [
 	self cleanNodes.
 	node := XMLElement name: 'macro' attributes: Dictionary new.
 	node attributeAt: #name put: title asString.
-	node addNode: ((XMLElement named: #description) addContent: (XMLString string: description asString)).
+	node addElement: ((XMLElement named: #description) addContent: (XMLString string: description asString)).
 	node 
-		addNode: self writeInputAsXml;
-		addNode: self writeOutputAsXml.
-	aNode addNode: node.
+		addElement: self writeInputAsXml;
+		addElement: self writeOutputAsXml.
+	aNode addElement: node.
 	^node
 		
 ]
