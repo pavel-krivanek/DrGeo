@@ -119,7 +119,7 @@ DrGPlateform >> reset [
 
 { #category : #path }
 DrGPlateform >> rootPath [
-	^ FileSystem disk workingDirectory parent parent
+	^ FileSystem disk workingDirectory 
 ]
 
 { #category : #'user interface' }

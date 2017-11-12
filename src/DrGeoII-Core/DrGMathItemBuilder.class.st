@@ -231,7 +231,7 @@ elements <parent id=xxx>"
 	|collection|
 	collection := OrderedCollection new.
 	node elementsDo: [:each | 
-		(each tag = #parent) ifTrue: [
+		(each localName = #parent) ifTrue: [
 			collection add: (self factory findInPoolById: (each attributeAt: 'ref') asSymbol)]].
 	^collection 
 ]

@@ -43,7 +43,7 @@ DrGeoXml >> instantiateItemFrom: aNode [
 DrGeoXml >> instantiateStyle: aNode for: item [
  "instantiate the style for this item"
 	self 
-		perform: (#parseStyleOf , aNode tag capitalized , #':with:') asSymbol
+		perform: (#parseStyleOf , aNode localName capitalized , #':with:') asSymbol
 		with: item
 		with: aNode
 ]
@@ -68,7 +68,7 @@ and return a DrGeo for each one"
 	instances := OrderedCollection new.
 	(doc elementAt: #drgenius) ifNil: [^nil].
 	(doc elementAt: #drgenius)
-		tagsNamed: #drgeo
+		descendantElementsNamed: #drgeo
 		do: [:each | instances add: (self parseOneFigure: each for: constructor)].
 	^ instances
 ]
@@ -78,7 +78,7 @@ DrGeoXml >> loadFrom: stream for: constructor [
 "One XML document may contain several drgeo figure instances, parse it all,
 and return a DrGeo for each one"
 	| doc instances |
-	doc := XMLDOMParser parseDocumentFrom: stream.
+	doc := XMLDOMParser parse: stream.
 	stream close.
 	self loadMacroFrom: doc.
 	^ self loadFigureFrom: doc for: constructor.
@@ -88,7 +88,7 @@ and return a DrGeo for each one"
 DrGeoXml >> loadMacroFrom: doc [
 	(doc elementAt: #drgenius) ifNil: [^self].
 	(doc elementAt: #drgenius)
-		tagsNamed: #macro
+		descendantElementsNamed: #macro
 		do: [:each | DrGMacroFactory new addUnique: (self parseOneMacro: each)].
 
 ]
@@ -108,7 +108,7 @@ DrGeoXml >> methodToParse: aNode [
  "find which method to use to parse this node"
 	|type|
 	type := ((aNode attributeAt: #type) copyWithoutAll: '_' ) capitalized asSymbol.
-	 ^(#parse , aNode tag capitalized , type , #':') asSymbol 
+	 ^(#parse , aNode localName capitalized , type , #':') asSymbol 
 ]
 
 { #category : #accessing }
@@ -563,7 +563,7 @@ DrGeoXml >> parseOneFigure: node for: constructor [
 			controlsManager := DrGUIControlsManager new.
 			controlsManager 
 				customized: 	((node attributeAt: #custom_controls ifAbsent: ['False']) = 'True').
-			controlsNode := node firstTagNamed: #controls.
+			controlsNode := node findElementNamed: #controls.
 			controlsNode ifNotNil: [ controlsManager readXmlFrom: controlsNode ].
 			self app: (DrGeo perform: constructor with: controlsManager)]
 		ifFalse: [self app: (DrGeo perform: constructor)].
@@ -761,7 +761,7 @@ DrGeoXml >> parseRotation: aNode [
 DrGeoXml >> parseScript: drgeoNode [
 "First do one pass to compile all the script Smalltalk source code"
 	drgeoNode elementsDo: [: node |
-		(node tag = #value and: [(node attributeAt: #type) = #script]) ifTrue:
+		(node localName = #value and: [(node attributeAt: #type) = #script]) ifTrue:
 			[CodeImporter evaluateString: (node contentStringAt: #code)]]
 ]
 
