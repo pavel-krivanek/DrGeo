@@ -1124,8 +1124,8 @@ DrGeoXml >> saveMultiple: sketchesAndMacros on: stream [
 		figure saved: true].
 	(sketchesAndMacros select: [:each | each class = DrGMacro]) do: [:macro |
 		macro writeAsXmlTo: root].
-	doc addElement: root.
-	doc printXMLOn: writer.
+	doc addNode: root.
+	doc writeXMLOn: writer.
 	stream close
 ]
 
@@ -1136,8 +1136,8 @@ DrGeoXml >> saveOn: stream [
 	writer := XMLWriter on: stream.
 	root := XMLElement named: #drgenius.
 	self writeFigureAsXmlTo: root.
-	doc addElement: root.
-	doc printXMLOn: writer.
+	doc addNode: root.
+	doc writeXMLOn: writer.
 	stream close
 ]
 
@@ -1165,16 +1165,16 @@ DrGeoXml >> writeFigureAsXmlTo: aNode [
 		at: #axes put: self presenter isAxesVisible asString capitalized;
 		at: #name put: app title.
 
-	drgeoNode := XMLElement named: #drgeo attributes: attr.
+	drgeoNode := XMLElement name: #drgeo attributes: attr.
 	
 	"Add the custom controls element preferences"
 	controlNode := XMLElement named: #controls.
 	self presenter controlsManager writeAsXmlTo: controlNode.
-	drgeoNode addElement: controlNode.
+	drgeoNode addNode: controlNode.
 
 	"Write the items"
 	app domain factory pool do: [:anItem |
 		(app costumeOf: anItem) writeAsXmlTo: drgeoNode].
-	aNode addElement: drgeoNode
+	aNode addNode: drgeoNode
 
 ]

@@ -133,6 +133,6 @@ DrGPointOncurveItem >> writeAsXmlTo: aNode [
 	"It is important to return the node"
 	| node|
 	node := super writeAsXmlTo: aNode.
-	node addElement:  ((XMLElement named: #value) addContent: (XMLString string: abscissa  asString)).
+	node addNode:  ((XMLElement named: #value) addContent: (XMLString string: abscissa  asString)).
 	^node
 ]
