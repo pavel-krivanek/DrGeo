@@ -34,9 +34,9 @@ DrGAngleVectorsItem >> update [
 DrGAngleVectorsItem >> writeAsXmlPositionTo: aNode [ 
 	"return the newly created element"
 	aNode
-		addElement: ((XMLElement named: #x)
+		addNode: ((XMLElement named: #x)
 				addContent: (XMLString string: position x asString));
-		addElement: ((XMLElement named: #y)
+		addNode: ((XMLElement named: #y)
 				addContent: (XMLString string: position y asString)).
 	^ aNode
 ]

@@ -179,9 +179,9 @@ DrGBitmapItem >> topCenter [
 DrGBitmapItem >> writeAsXmlPositionTo: aNode [ 
 	"return the newly created element"
 	aNode
-		addElement: ((XMLElement named: #x)
+		addNode: ((XMLElement named: #x)
 				addContent: (XMLString string: position x asString));
-		addElement: ((XMLElement named: #y)
+		addNode: ((XMLElement named: #y)
 				addContent: (XMLString string: position y asString)).
 	^ aNode
 ]
@@ -195,11 +195,11 @@ DrGBitmapItem >> writeAsXmlTo: aNode [
 	node := super writeAsXmlTo: aNode.
 	self writeAsXmlPositionTo: node.
 	node
-		addElement: ((XMLElement named: #insertAtScale) 
+		addNode: ((XMLElement named: #insertAtScale) 
 			addContent: (XMLString string: canvasScaleAtInsertion asString));
-		addElement: ((XMLElement named: #magnify) 
+		addNode: ((XMLElement named: #magnify) 
 			addContent: (XMLString string: magnifyBy asString));
-		addElement:  ((XMLElement named: #data) 
+		addNode:  ((XMLElement named: #data) 
 			addContent: (XMLString string: stream contents base64Encoded)).
 	^ node
 

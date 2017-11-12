@@ -61,6 +61,6 @@ DrGValueValueItem >> writeAsXmlTo: aNode [
 	"return the newly created element"
 	| node |
 	node := super writeAsXmlTo: aNode.
-	node addElement:  ((XMLElement named: #value) addContent: (XMLString string: value asFloat asString)).
+	node addNode:  ((XMLElement named: #value) addContent: (XMLString string: value asFloat asString)).
 	^ self writeAsXmlPositionTo: node.
 ]

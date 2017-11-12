@@ -372,7 +372,7 @@ DrGMathItem >> writeAsXmlTo: aNode [
 	"return the newly created element"
 	| node |
 	self rehash.
-	node :=  XMLElement named: self basicType attributes: Dictionary new.
+	node :=  XMLElement name: self basicType attributes: Dictionary new.
 	node attributeAt: #type put: self nodeType;
 		attributeAt: #name put: (name ifNil: ['']);
 		attributeAt: #id put: self hash asString.
@@ -388,7 +388,7 @@ DrGMathItem >> writeParents: collection asXmlTo: aNode [
 	collection do: [:each | 
 		attr := Dictionary new.
 		attr at: #ref put: each hash asString.
-		aNode addElement: (XMLElement named: #parent attributes: attr)]
+		aNode addElement: (XMLElement name: #parent attributes: attr)]
 ]
 
 { #category : #'xml writing' }
