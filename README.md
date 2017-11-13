@@ -12,3 +12,10 @@ Metacello new
   repository: 'github://pavel-krivanek/DrGeo/src';
   load.
 ```
+
+### How to run
+
+```
+DrGDefault beWorkstation.
+DrGeo newFullScreen
+```
