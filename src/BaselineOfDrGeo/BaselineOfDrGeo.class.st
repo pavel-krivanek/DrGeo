@@ -11,7 +11,6 @@ BaselineOfDrGeo >> baseline: spec [
 	spec for: #common do: [
 		spec project: 'XML Parser' with: [
 			spec className: 'ConfigurationOfXMLParser';
-			loads: #('stable');
 			file: 'ConfigurationOfXMLParser';
 			repository: 'http://www.squeaksource.com/MetaRepoForPharo60'].
 		spec 
