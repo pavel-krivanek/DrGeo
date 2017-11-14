@@ -12,7 +12,7 @@ BaselineOfDrGeo >> baseline: spec [
 		spec project: 'XML Parser' with: [
 			spec className: 'ConfigurationOfXMLParser';
 			file: 'ConfigurationOfXMLParser';
-			repository: 'http://www.squeaksource.com/MetaRepoForPharo60'].
+			repository: 'http://smalltalkhub.com/mc/Pharo//MetaRepoForPharo60'].
 		spec 
 			package: 'DrGeoII-Core';
 			package: 'DrGeoII-Polymorph';
